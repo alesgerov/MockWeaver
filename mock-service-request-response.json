@@ -1,0 +1,41 @@
+{
+  "port": 8083,
+  "routes": [
+    {
+      "uri": "/api/v1",
+      "method": "GET",
+      "request": {
+        "contentType": "application/json",
+        "content": {
+          "username": "test",
+          "password": "test"
+        }
+      },
+      "response": {
+        "statusCode": 400,
+        "contentType": "application/json",
+        "content": {
+          "response": "ok"
+        }
+      }
+    },
+    {
+      "uri": "/api/v1",
+      "method": "POST",
+      "request": {
+        "contentType": "application/json",
+        "content": {
+          "username": "test",
+          "password": "test"
+        }
+      },
+      "response": {
+        "statusCode": 200,
+        "contentType": "application/json",
+        "content": {
+          "response": "ok"
+        }
+      }
+    }
+  ]
+}
