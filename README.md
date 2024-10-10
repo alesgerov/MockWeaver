@@ -19,7 +19,7 @@ This service is responsible for handling mock API configurations. It loads mock 
 2. To run the service, use the following command:
 
    ```bash 
-   java -jar mock-service-0.0.1.jar -Dapplication.mock.file.path='/path/to/your/mock-service-request-response.json'
+   java -jar -Dapplication.mock.file.path=mock-service-request-response.json mock-service-0.0.1.jar
    ```
 
 ## Configuration
