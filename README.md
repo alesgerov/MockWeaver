@@ -59,7 +59,7 @@ Example structure of the mock-service-request-response.json:
 - If the service doesn't start, ensure the path to the mock file is correct and the JSON is valid.
 - For logging, check the logs directory or console output for errors during startup or request handling.
 
-## Destroying the Service
+### Destroying the Service
 
 To gracefully shut down or destroy the service, you can make a request to the following endpoint:
  * URI: ``` /api/v1/destroy ```
