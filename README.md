@@ -1,6 +1,4 @@
-Here’s the **updated version** of your **Mock Weaver README** with your new functionalities clearly reflected and the old, unnecessary parts removed:
 
----
 
 # 🧵 Mock Weaver
 
