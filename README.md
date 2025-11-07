@@ -26,9 +26,15 @@
    ```
 
 2. **Run the service**:
-
+On mac or linux:
    ```bash
    ./mock-weaver
+   ```
+
+2. **Run the service**:
+On windows:
+   ```bash
+   mock-weaver.exe
    ```
 
 3. **Provide the JSON configuration file** when prompted:
