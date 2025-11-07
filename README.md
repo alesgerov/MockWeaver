@@ -1,40 +1,60 @@
-# Mock Weaver
+Here’s the **updated version** of your **Mock Weaver README** with your new functionalities clearly reflected and the old, unnecessary parts removed:
 
-This service is responsible for handling mock API configurations. It loads mock request-response configurations from a specified file and provides mock responses for API calls.
+---
 
-## Prerequisites
+# 🧵 Mock Weaver
 
-- **Java 17** or higher must be installed on your system.
-- Ensure that the required configuration file is available at the correct path.
+**Mock Weaver** is a lightweight, standalone mock service that allows you to simulate API responses based on configurable request-response definitions. It’s ideal for testing, integration, and rapid prototyping — no external dependencies required.
 
-## How to Run
+---
 
-1. Clone the repository (if applicable):
+## 🚀 Features
+
+* **No Java installation required** — just execute the provided file directly.
+* **Dynamic mock configuration** — load your mock request-response definitions from a JSON file.
+* **Customizable response times** — simulate network latency or delayed responses using the new `responseTime` field.
+* **Simple startup** — provide your configuration file after running the executable.
+* **Graceful shutdown** — no need to manually call any destroy endpoint; simply close the process.
+
+---
+
+## 📦 How to Run
+
+1. **Clone the repository** (if applicable):
 
    ```bash
    git clone https://github.com/alesgerov/MockWeaver.git
    cd MockWeaver
    ```
 
-2. To run the service, use the following command:
+2. **Run the service**:
 
-   ```bash 
-   java -jar -Dapplication.mock.file.path=mock-service-request-response.json mock-service-0.0.1.jar
+   ```bash
+   ./mock-weaver
    ```
 
-## Configuration
+3. **Provide the JSON configuration file** when prompted:
 
-The mock service reads mock request-response pairs from the provided JSON file. Ensure your file is structured correctly to avoid errors.
+   ```
+   Enter file name: mock-service-request-response.json
+   ```
 
-Example structure of the mock-service-request-response.json:
+---
 
-``` json
+## ⚙️ Configuration
+
+The mock service reads mock request-response pairs from your JSON file.
+Ensure your file is structured correctly to avoid errors.
+
+### 🧩 Example `mock-service-request-response.json`
+
+```json
 {
   "port": 8083,
   "routes": [
     {
       "uri": "/api/v1",
-      "method": "GET",
+      "method": "POST",
       "request": {
         "contentType": "application/json",
         "content": {
@@ -43,7 +63,22 @@ Example structure of the mock-service-request-response.json:
         }
       },
       "response": {
+        "responseTime": 1000,
         "statusCode": 400,
+        "contentType": "application/json",
+        "content": {
+          "response": "ok"
+        }
+      }
+    },
+    {
+      "uri": "/v1",
+      "method": "GET",
+      "request": {
+        "contentType": "application/json"
+      },
+      "response": {
+        "statusCode": 200,
         "contentType": "application/json",
         "content": {
           "response": "ok"
@@ -54,20 +89,29 @@ Example structure of the mock-service-request-response.json:
 }
 ```
 
-### Troubleshooting
+### 🕒 Response Time
 
-- If the service doesn't start, ensure the path to the mock file is correct and the JSON is valid.
-- For logging, check the logs directory or console output for errors during startup or request handling.
+The new `responseTime` field (in milliseconds) allows you to define how long the mock service should wait before responding.
+Example:
 
-### Destroying the Service
-
-To gracefully shut down or destroy the service, you can make a request to the following endpoint:
- * URI: ``` /api/v1/destroy ```
- * Method: ``` GET ```
- * Expected Response: The service will terminate or stop running.
-
-You can trigger this using a tool like ```curl``` :
-
-``` bash
-curl -X POST http://localhost:8083/api/v1/destroy
+```json
+"responseTime": 3000
 ```
+
+→ This delays the response by 3 seconds.
+
+---
+
+## 🩵 Troubleshooting
+
+* Ensure your JSON file path is correct and the JSON is valid.
+* Check the console output for any parsing or port binding errors.
+* To stop the service, simply **press `Ctrl + C`** or close the terminal window.
+
+---
+
+## 🧹 Old Destroy Endpoint
+
+You **no longer need to call** `/api/v1/destroy`.
+The service can be terminated normally without making an API request.
+
